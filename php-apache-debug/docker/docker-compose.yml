@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  web:
+    build:
+      context: php
+    container_name: my-php
+    ports:
+      - 80:80
+    restart: unless-stopped
+    volumes:
+      - ./../:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
